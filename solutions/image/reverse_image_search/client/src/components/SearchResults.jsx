@@ -38,6 +38,7 @@ const SearchResults = props => {
     const photos = images.map(img => {
         return {
             src: `${GetImageUrl}?image_path=${img[0]}`,
+            path: img[0],
             distance: img[1]
         };
     });

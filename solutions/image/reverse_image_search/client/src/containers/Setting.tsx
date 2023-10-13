@@ -122,7 +122,7 @@ const Setting = (props: any) => {
       },
       benchImage: {
         width: "400px",
-        height: "250px",
+        // height: "250px",
         position: "relative",
       },
       dropzoneContainer: {

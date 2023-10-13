@@ -21,8 +21,9 @@ const Gallary = (props: any) => {
       imageContainer: {
         position: "relative",
         flex: isMobile ? 1 : "0 0 21%",
-        margin: isMobile ? 0 : "0 15px 15px 0",
+        margin: isMobile ? 0 : "50px 15px 15px 0",
         paddingTop: isMobile ? "100%" : "20%",
+        paddingBottom: "50px",
         border: "solid 1px #60606F",
         display: "flex",
         justifyContent: "center",
@@ -30,6 +31,9 @@ const Gallary = (props: any) => {
         fontSize: "50px",
         width: isMobile ? "100%" : "auto",
         height: isMobile ? "0" : "auto",
+      },
+      imagePath: {
+        display: "flex",
       },
       child: {
         width: "100%",
@@ -61,6 +65,14 @@ const Gallary = (props: any) => {
         textOverflow: "ellipsis",
         whiteSpace: "nowrap",
       },
+      path: {
+        fontSize: "14px",
+        color: "#fff",
+        wordBreak: "break-all",
+        padding: "0px 5px",
+        position: "absolute",
+        top: "100%",
+      },
     })
   );
   const { images = [], onClick } = props;
@@ -77,14 +89,11 @@ const Gallary = (props: any) => {
     <div className={classes.root}>
       {images.length > 0
         ? images.map((img: any, index: number) => {
-            const { src, distance } = img;
+            const { src, path, distance } = img;
             const isHovered = hovered === src;
             return (
               <div
                 className={classes.imageContainer}
-                onClick={() => {
-                  onClick(index);
-                }}
                 onMouseOver={onMouseOver}
                 onMouseLeave={onMouseLeave}
                 key={src}
@@ -93,7 +102,15 @@ const Gallary = (props: any) => {
                   border: `solid 2px ${isHovered ? baseColor : "transparent"}`,
                 }}
               >
-                <img src={src} className={classes.child} alt="" />
+                <img
+                  src={src}
+                  className={classes.child}
+                  alt=""
+                  onClick={() => {
+                    onClick(index);
+                  }}
+                />
+                <div className={classes.path}>{path}</div>
                 {isHovered && (
                   <p className={classes.distant}>{distance.toFixed(6)}</p>
                 )}
